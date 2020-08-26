@@ -3,7 +3,7 @@
 <!-- Main Content -->
 <div id="content">
 
-<?php $this->load->view('layout/navbar') ?>
+	<?php $this->load->view('layout/navbar') ?>
 
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
@@ -13,11 +13,27 @@
 				<li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
 			</ol>
 		</nav
-		<!-- DataTales Example -->
+
+		<?php if($message = $this->session->flashdata('error')) : ?>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						<strong>
+							<i class="fas fa-exclamation-triangle"></i>
+							&nbsp;&nbsp;<?php echo $message ?>
+						</strong>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		<?php endif;  ?>
+
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
 				<a title="Cadastrar novo usuário" href="" class="btn btn-success btn-sm float-lg-right">
-					<i class="fas fa-user-plus"></i>&nbsp; Novo
+					<i class="fas fa-user-plus"></i>&nbsp;Novo
 				</a>
 			</div>
 			<div class="card-body">

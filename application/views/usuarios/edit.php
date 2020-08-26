@@ -31,9 +31,10 @@
 								   placeholder="Seu nome"
 								   value="<?php echo $usuario->first_name ?>"
 							/>
-							<small id="emailHelp" class="form-text text-muted">
-								We'll never share your email with anyone else.
-							</small>
+							<?php echo form_error(
+								'first_name',
+								' <small class="form-text text-danger">','</small> ');
+							?>
 						</div>
 
 						<!--Editar sobrenome-->
@@ -45,9 +46,10 @@
 								   placeholder="Seu sobrenome"
 								   value="<?php echo $usuario->last_name ?>"
 							/>
-							<small id="emailHelp" class="form-text text-muted">
-								We'll never share your email with anyone else.
-							</small>
+							<?php echo form_error(
+								'last_name',
+								' <small class="form-text text-danger">','</small> ');
+							?>
 						</div>
 
 						<!--Editar email-->
@@ -59,9 +61,10 @@
 								   placeholder="Seu email"
 								   value="<?php echo $usuario->email ?>"
 							/>
-							<small id="emailHelp" class="form-text text-muted">
-								We'll never share your email with anyone else.
-							</small>
+							<?php echo form_error(
+								'email',
+								' <small class="form-text text-danger">','</small> ');
+							?>
 						</div>
 					</div>
 
@@ -75,9 +78,10 @@
 								   placeholder="Seu usuário"
 								   value="<?php echo $usuario->username ?>"
 							/>
-							<small id="emailHelp" class="form-text text-muted">
-								We'll never share your email with anyone else.
-							</small>
+							<?php echo form_error(
+								'username',
+								' <small class="form-text text-danger">','</small> ');
+							?>
 						</div>
 
 						<!--Editar senha de acesso-->
@@ -88,6 +92,10 @@
 								   name="password"
 								   placeholder="Sua senha de acesso"
 							/>
+							<?php echo form_error(
+								'password',
+								' <small class="form-text text-danger">','</small> ');
+							?>
 						</div>
 
 						<!--Confirmação de senha-->
@@ -98,6 +106,10 @@
 								   name="confirm_password"
 								   placeholder="Confirme sua senha"
 							/>
+							<?php echo form_error(
+								'confirm_password',
+								' <small class="form-text text-danger">','</small> ');
+							?>
 						</div>
 					</div>
 

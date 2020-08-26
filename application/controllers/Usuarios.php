@@ -37,35 +37,50 @@ class Usuarios extends CI_Controller {
 
 	public function edit($user_id = null) {
 		if(!$user_id || !$this->ion_auth->user($user_id)->row()) {
-			exit('Usuário não encontrado');
+			$this->session->set_flashdata('error', 'Usuário não encontrado');
+			redirect('usuarios');
 		} else {
-			$data = array(
-				'titulo'         => 'Editar usuário',
-				'usuario'        => $this->ion_auth->user($user_id)->row(),
-				'perfil_usuario' => $this->ion_auth->get_users_groups($user_id)->row(),
-			);
+			$this->form_validation->set_rules('first_name', '', 'trim|required');
+			$this->form_validation->set_rules('last_name', '', 'trim|required');
+			$this->form_validation->set_rules('email', '', 'trim|required');
+			$this->form_validation->set_rules('username', '', 'trim|required');
+			$this->form_validation->set_rules('password', '', 'trim|required');
+			$this->form_validation->set_rules('confirm_password', '', 'trim|required');
 
-//			Array
-//			(
-//				[first_name] => Admin
-//				[last_name] => istrator
-//			[email] => admin@admin.com
-//			[username] => administrator
-//			[password] =>
-//    [confirm_password] =>
-//    [active] => 1
-//    [perfil_usuario] => 1
-//    [user_id] => 1
-//)
+			if($this->form_validation->run()) {
+				exit('Validado');
+			} else {
+				$data = array(
+					'titulo'         => 'Editar usuário',
+					'usuario'        => $this->ion_auth->user($user_id)->row(),
+					'perfil_usuario' => $this->ion_auth->get_users_groups($user_id)->row(),
+				);
+				$this->load->view('layout/header', $data);
+				$this->load->view('usuarios/edit');
+				$this->load->view('layout/footer');
+			}
 
+
+			/*
+			Array
+			(
+				[first_name] => Admin
+				[last_name] => istrator
+				[email] => admin@admin.com
+				[username] => administrator
+				[password] =>
+				[confirm_password] =>
+				[active] => 1
+				[perfil_usuario] => 1
+				[user_id] => 1
+			)
+			*/
 
 //			echo '<pre>';
-////			print_r($this->input->post());
-////			exit();
+//			print_r($this->input->post());
+//			exit();
 
-			$this->load->view('layout/header', $data);
-			$this->load->view('usuarios/edit');
-			$this->load->view('layout/footer');
+
 		}
 	}
 }

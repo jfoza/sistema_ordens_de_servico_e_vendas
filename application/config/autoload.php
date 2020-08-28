@@ -62,7 +62,7 @@ $autoload['libraries'] = array(
 	'ion_auth',
 	'database',
 	'form_validation',
-	'session'
+	'session',
 );
 
 /*
@@ -94,7 +94,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url');
+$autoload['helper'] = array('url', 'security', 'array');
 
 /*
 | -------------------------------------------------------------------
@@ -137,4 +137,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array();
+$autoload['model'] = array('core_model');

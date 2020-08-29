@@ -17,6 +17,7 @@
 
 	<!-- Custom styles for this template-->
 	<link href="<?php echo base_url('public/css/sb-admin-2.min.css'); ?>" rel="stylesheet">
+	<link href="<?php echo base_url('public/css/app.css'); ?>" rel="stylesheet">
 
 	<?php if(isset($styles)) : ?>
 		<?php foreach($styles as $style) : ?>

@@ -60,9 +60,9 @@ class Usuarios extends CI_Controller {
 			$group = $this->security->xss_clean($group);
 
 			if($this->ion_auth->register($username, $password, $email, $additional_data, $group)) {
-				$this->session->set_flashdata('sucesso', 'Dados salvos com sucesso');
+				$this->session->set_flashdata('sucesso', 'Dados salvos com sucesso.');
 			} else {
-				$this->session->set_flashdata('error', 'Erro ao salvar os dados');
+				$this->session->set_flashdata('error', 'Erro ao salvar os dados.');
 			}
 
 			redirect('usuarios');
@@ -80,9 +80,11 @@ class Usuarios extends CI_Controller {
 
 	public function edit($user_id = null) {
 		if(!$user_id || !$this->ion_auth->user($user_id)->row()) {
-			$this->session->set_flashdata('error', 'Usuário não encontrado');
+			$this->session->set_flashdata('error', 'Usuário não encontrado.');
 			redirect('usuarios');
-		} else {
+		}
+
+		else {
 			$this->form_validation->set_rules('first_name', '', 'trim|required');
 			$this->form_validation->set_rules('last_name', '', 'trim|required');
 			$this->form_validation->set_rules('email', '', 'trim|required|valid_email|callback_email_check');
@@ -118,9 +120,9 @@ class Usuarios extends CI_Controller {
 						$this->ion_auth->remove_from_group($perfil_usuario_db->id, $user_id);
 						$this->ion_auth->add_to_group($perfil_usuario_post, $user_id);
 					}
-					$this->session->set_flashdata('sucesso', 'Dados salvos com sucesso');
+					$this->session->set_flashdata('sucesso', 'Dados salvos com sucesso.');
 				} else {
-					$this->session->set_flashdata('error', 'Erro ao salvar os dados');
+					$this->session->set_flashdata('error', 'Erro ao salvar os dados.');
 				}
 				redirect('usuarios');
 
@@ -135,6 +137,24 @@ class Usuarios extends CI_Controller {
 				$this->load->view('layout/footer');
 			}
 		}
+	}
+
+	public function delete($user_id = null) {
+		if(!$user_id || !$this->ion_auth->user($user_id)->row()) {
+			$this->session->set_flashdata('error', 'Usuário não encontrado.');
+			redirect('usuarios');
+		}
+		if($this->ion_auth->is_admin($user_id)) {
+			$this->session->set_flashdata('error', 'Este usuário não pode ser excluído.');
+			redirect('usuarios');
+		}
+
+		if($this->ion_auth->delete_user($user_id)) {
+			$this->session->set_flashdata('sucesso', 'Usuário excluído com sucesso.');
+		} else {
+			$this->session->set_flashdata('error', 'Erro ao excluir usuário.');
+		}
+			redirect('usuarios');
 	}
 
 	public function email_check($email) {

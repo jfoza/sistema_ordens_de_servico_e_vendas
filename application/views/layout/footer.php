@@ -1,12 +1,14 @@
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-	<div class="container my-auto">
-		<div class="copyright text-center my-auto">
-			<span>Copyright &copy; System Ordem <?php echo date('Y') ?></span>
+<?php if(!$this->router->fetch_class() == 'login'): ?>
+	<!-- Footer -->
+	<footer class="sticky-footer bg-white">
+		<div class="container my-auto">
+			<div class="copyright text-center my-auto">
+				<span>Copyright &copy; System Ordem <?php echo date('Y') ?></span>
+			</div>
 		</div>
-	</div>
-</footer>
-<!-- End of Footer -->
+	</footer>
+	<!-- End of Footer -->
+<?php endif; ?>
 
 </div>
 <!-- End of Content Wrapper -->
